@@ -9,19 +9,19 @@
  * This function builds and sends multiple requests to retrieve market history data for specific item
  * types in a specific region using the GESI library in JavaScript.
  */
-function buildRequest() {
-  var client = GESI.getClient().setFunction(`markets_region_history`);
+function buildRequest(typeIds, regionId = 10000002) {
+  typeIds = extractIds(typeIds);
 
-  var type_ids = [34, 35, 36];
-  var requests = type_ids.map((type_id) => {
-    return client.buildRequest({
-      type_id: type_id,
-      region_id: 10000002
-    });
-  });
-  Logger.log(requests);
-  var responses = UrlFetchApp.fetchAll(requests);
+  const client = GESI.getClient().setFunction(`markets_region_history`);
+  const requests = typeIds.map((typeId) => client.buildRequest({
+      type_id: typeId,
+      region_id: regionId
+    })
+  );
+  log(requests);
+  const responses = UrlFetchApp.fetchAll(requests);
+  log(responses);
 
-  Logger.log(responses);
+  return responses;
 }
 ```

@@ -7,7 +7,9 @@
   "scripts": {
     "build": "webpack --mode=production",
     "push": "cd dist && clasp push",
-    "generate-docs": "jsdoc -c conf.json"
+    "generate-docs": "jsdoc -c conf.json",
+    "prep": "node pack",
+    "map": "markdown-notes-tree --includeUpwardNavigation --ignore docs/*.*"
   },
   "devDependencies": {
     "@google/clasp": "^1.4.1",
@@ -24,6 +26,7 @@
     "es3ify-webpack-plugin": "0.0.1",
     "gas-webpack-plugin": "^0.3.0",
     "html-loader": "^0.5.5",
+    "markdown-notes-tree": "^1.13.0",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.0.8"
   },
