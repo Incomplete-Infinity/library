@@ -1,0 +1,12 @@
+node_modules
+.private
+src/.To Sort
+src/*/*.js
+.vscode
+.babelrc
+clasp.json
+.claspignore
+.eslintrc.json
+.jshintrc
+appsscript.json
+library.code-workspace
