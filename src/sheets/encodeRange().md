@@ -1,12 +1,10 @@
-# `encode()`
+# `encodeRange()`
 
 ## Summary
 
 ### Code
 
 ```js
-const ss = SpreadsheetApp.getActive();
-
 /**
  * This function encodes the values in the active range of a Google Sheets document using
  * encodeURIComponent.
@@ -16,6 +14,7 @@ const ss = SpreadsheetApp.getActive();
  * the input
  */
 const encode = (active = ss.getActiveRange()) => {
+  const ss = SpreadsheetApp.getActive();
   const sheet = SpreadsheetApp.getActiveSheet();
   const values = active.getValues().map(([source]) => [encodeURIComponent(source.toString())]);
   sheet

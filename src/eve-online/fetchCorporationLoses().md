@@ -1,8 +1,8 @@
 # `fetchCorporationLosses()`
 
-## For interacting with the zKillBoard.com API
+For interacting with the `zKillBoard.com` *API*
 
-### Contents
+## Contents
 
 1. [Summary](#summary) - high-level overview of the script's function
 2. [Parameters](#parameters) - rundown of all parameters
@@ -10,7 +10,7 @@
    * [Code](#code) - source code for this script for various engines
    * [Browser](#browser)
    * [Node.js](#nodejs)
-5. [Return](#return) - information on the script's output
+4. [Return](#return) - information on the script's output
 
 ---
 
@@ -28,7 +28,7 @@ This function fetches the **losses** of a specific **Eve Online**  *corporation*
 
 ---
 
-#### Apps Script
+## Apps Script
 
 ### Code
 
@@ -48,7 +48,7 @@ async function fetchCorporationLosses(corporationId = 98631147) {
 }
 ```
 
-#### Browser
+## Browser
 
 ```js
 /**
@@ -64,7 +64,7 @@ async function fetchCorporationLosses(corporationId = 98631147) {
 }
 ```
 
-#### Node.js
+## Node.js
 
 ```js
 const fetch = require('node-fetch');
@@ -84,11 +84,11 @@ async function fetchCorporationLosses(corporationId = 98631147) {
 
 ---
 
-### Return
+## Return
 
 The **losses** of a *corporation* with the specified `corporationId` from the *zKillboard* **API**.
 
-#### Example
+### Example
 
 ```json
 [ 

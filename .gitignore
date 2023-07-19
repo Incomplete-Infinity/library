@@ -10,3 +10,4 @@ clasp.json
 .jshintrc
 appsscript.json
 library.code-workspace
+/jsdoc-conf.json.keep

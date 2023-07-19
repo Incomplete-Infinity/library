@@ -2,7 +2,6 @@
   "source": {
     "include": [
       "./dist/drive.js",
-      "./dist/drive.js",
       "./dist/eve-online.js",
       "./dist/general.js",
       "./dist/numbers.js",
@@ -41,9 +40,9 @@
     "recurse": true,
     "package": "package.json",
     "readme": "README.md",
-    "destination": "./",
+    "destination": "docs/",
     "verbose": true,
-    "template": "./node_modules/docdash",
+    "template": "node_modules/clean-jsdoc-theme",
     "theme_opts": {
       "default_theme": "dark"
     }

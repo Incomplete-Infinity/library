@@ -1,4 +1,4 @@
-# `decode()`
+# `decodeCell()`
 
 ## Summary
 

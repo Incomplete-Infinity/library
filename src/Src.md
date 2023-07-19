@@ -3,21 +3,23 @@
 ## Folder Structure
 
 ```md
-root  
-└───src
-    ├───.snippets
-    ├───.To Sort
-    ├───Drive
-    ├───Eve Online
-    │   ├───GESI
-    │   ├───Industry
-    │   ├───Market
-    │   │   └───loadRegionAggregates()
-    │   └───ZKill
-    ├───Numbers
-    ├───Sheets
-    ├───Time
-    └───Web
+root/  
+├─ src/
+│  ├─ drive/
+│  ├─ eve-online/
+│  ├─ numbers/
+│  ├─ sheets/
+│  ├─ time/
+│  └─ web/
+├─ dist/ 
+│  ├─ `drive.js`
+│  ├─ `eve-online.js`
+│  ├─ `general.js`
+│  ├─ `number.js`
+│  ├─ `sheets.js`
+│  ├─ `strings.js`
+│  ├─ `time.js`
+│  └─ `web.js`
 
 ```
 

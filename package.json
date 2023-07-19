@@ -1,14 +1,9 @@
 {
   "name": "library",
-  "dependencies": {
-    "clean-jsdoc-theme": "^4.1.10",
-    "taffydb": "^2.7.3"
-  },
   "scripts": {
-    "build": "webpack --mode=production",
+    "prep": "node pack",
     "push": "cd dist && clasp push",
     "generate-docs": "jsdoc -c conf.json",
-    "prep": "node pack",
     "map": "markdown-notes-tree --includeUpwardNavigation --ignore docs/*.*"
   },
   "devDependencies": {
@@ -22,25 +17,29 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
+    "clean-jsdoc-theme": "^4.1.10",
     "docdash": "^2.0.0",
     "es3ify-webpack-plugin": "0.0.1",
     "gas-webpack-plugin": "^0.3.0",
     "html-loader": "^0.5.5",
-    "markdown-notes-tree": "^1.13.0",
-    "webpack": "^4.15.1",
-    "webpack-cli": "^3.0.8"
+    "jsdoc-to-markdown": "^8.0.0",
+    "markdown-notes-tree": "^1.13.0"
   },
-  "description": "<!-- @format -->",
   "version": "1.0.0",
   "main": "./docs/index.html",
+  "description": "<!-- @format -->",
   "directories": {
     "doc": "docs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PhobiaCide/library.git"
+    "url": "https://github.com/PhobiaCide/library.git"
   },
-  "author": "PhobiaCide",
+  "author": {
+    "name": "PhobiaCide",
+    "email": "aamason86@gmail.com",
+    "url": "https://github.com/PhobiaCide"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/PhobiaCide/library/issues"
