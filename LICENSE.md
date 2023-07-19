@@ -1,5 +1,7 @@
 # License
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
 ## The MIT License (MIT)
 
 ### Copyright © 2022 Andrew Amason

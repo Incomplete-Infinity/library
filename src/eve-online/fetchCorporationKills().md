@@ -1,22 +1,44 @@
 # `fetchCorporationKills()`
 
-## For interacting with the zKillBoard.com API
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-### Contents
+This function fetches the **kills** of a specific **Eve Online**  *corporation* from the *zKillboard.com* **API** using a given *corporation ID*
 
-1. [Summary](#summary) - high-level overview of the script's function
+## Contents
+
+1. [Preamble](#preamble) - information regarding preparation to run in different environments
+   - [Apps Script](#apps-script)
+   - [Browser](#browser)
+   - [Node.js](#nodejs)
 2. [Parameters](#parameters) - rundown of all parameters
-3. [Apps Script](#apps-script)
-   * [Code](#code) - source code for this script for various engines
-   * [Browser](#browser)
-   * [Node.js](#nodejs)
+3. [Code](#code) - source code for this script for various engines
 4. [Return](#return) - information on the script's output
+   - [Example Return](#example-return)
 
 ---
 
-### Summary
+### Preamble
 
-This function fetches the **kills** of a specific **Eve Online**  *corporation* from the *zKillboard.com* **API** using a given *corporation ID*
+Depending on the environment, the following code will be needed to enable the script to work.
+It should be placed above the function in your document.
+
+#### Apps Script
+
+```js
+const { fetch } = UrlFetchApp;
+```
+
+#### Browser
+
+```js
+// No additional code needed
+```
+
+#### Node.js
+
+```js
+const fetch = require('node-fetch');
+```
 
 ---
 
@@ -28,31 +50,10 @@ This function fetches the **kills** of a specific **Eve Online**  *corporation* 
 
 ---
 
-## Apps Script
-
 ### Code
 
 ```js
 /**
- * Fetches corporation kills from the zKillboard API.
- *
- * @param {number} [corporationId = 98631147] - The ID of the corporation to fetch kills for. Defaults to 98631147.
- * @returns {Promise<Response>} - A Promise that resolves to the response from the API.
- */
-function fetchCorporationKills(corporationId = 98631147) {
-  return JSON.parse(
-    UrlFetchApp.fetch(
-      `https://zkillboard.com/api/kills/corporationID/${corporationId}/`
-    ).getContentText()
-  );
-}
-
-```
-
-#### Browser
-
-```js
-/**
  * Fetches the kills for a specific corporation from the zKillboard API.
  *
  * @param {number} [corporationId = 98631147] - The ID of the corporation to fetch kills for.
@@ -64,26 +65,6 @@ async function fetchCorporationKills(corporationId = 98631147) {
   ).json();
 }
 ```
-
-#### Node.js
-
-```js
-const fetch = require('node-fetch');
-
-/**
- * Fetches the kills for a specific corporation from the zKillboard API.
- *
- * @param {number} [corporationId = 98631147] - The ID of the corporation to fetch kills for.
- * @returns {Promise<Object>} - A Promise resolving to the parsed JSON response containing the fetched kill data.
- */
-async function fetchCorporationKills(corporationId = 98631147) {
-  return await fetch(
-    `https://zkillboard.com/api/kills/corporationID/${corporationId}/`
-  ).json();
-}
-```
-
----
 
 ### Return
 
