@@ -8,6 +8,7 @@
 /**
  * The function `contractAppraisal` takes in several parameters and constructs a URL for an API request
  * to the Contracts Appraisal service.
+ * @requires https://api.contractsappraisal.com
  * @param [typeId=1296] - The ID of the item type being appraised.
  * @param [includePrivate=false] - a boolean value indicating whether to include private contracts in
  * the appraisal or not. Default is false.
@@ -37,7 +38,7 @@ function contractAppraisal(
     `bpc=${includeBpc}`,
     `security=${security}`,
     `material_efficiency=${materialEfficiency}`,
-    `time_efficiency=${timeEfficiency}`
+    `time_efficiency=${timeEfficiency}`,
   ];
   const query = `?1`;
 
