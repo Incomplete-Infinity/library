@@ -1,14 +1,16 @@
-const sheetName = `Sheet1`;
-const timestampHeader = `timestamp`;
-
 /**
  * This function retrieves the column index of a timestamp header in a Google Sheets spreadsheet.
  * @returns the index of the column that contains the timestamp header in the active spreadsheet. The
  * index is incremented by 1 to match the column numbering used in Google Sheets (which starts at 1
  * instead of 0).
  */
-function getDatetimeCol() {
-  const headers = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName).getDataRange().getValues().shift();
+function getDateTimeCol(sheetName) {
+  const timestampHeader = `timestamp`;
+  const headers = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName(sheetName)
+    .getDataRange()
+    .getValues()
+    .shift();
   const colIndex = headers.indexOf(timestampHeader);
   return colIndex + 1;
 }
@@ -16,7 +18,7 @@ function getDatetimeCol() {
 /**
  * This function automatically adds a timestamp to a specific column in a Google Sheets document when a
  * cell in another column is edited.
- * @param e - The "e" parameter in this function refers to the event object that triggered the onEdit
+ * @param e - The `e` parameter in this function refers to the event object that triggered the onEdit
  * function. It contains information about the edit event, such as the range of cells that were edited
  * and the user who made the edit.
  */
@@ -24,7 +26,12 @@ function onEdit(e) {
   const ss = SpreadsheetApp.getActiveSheet();
   const cell = ss.getActiveCell();
   const datecell = ss.getRange(cell.getRowIndex(), getDatetimeCol());
-  if (ss.getName() == SHEET_NAME && cell.getColumn() == 1 && !cell.isBlank() && datecell.isBlank()) {
+  if (
+    ss.getName() == SHEET_NAME &&
+    cell.getColumn() == 1 &&
+    !cell.isBlank() &&
+    datecell.isBlank()
+  ) {
     datecell.setValue(new Date()).setNumberFormat("yyyy-MM-dd hh:mm");
   }
 }
@@ -32,11 +39,11 @@ function onEdit(e) {
 /**
  * Deletes any blank columns in a given sheet, leaving a minimum number of columns.
  * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet - The sheet to crop.
- * @param {number} [minCols=0] - The minimum number of columns to leave in the sheet.
+ * @param {number} [minCols = 0] - The minimum number of columns to leave in the sheet.
  * @returns {GoogleAppsScript.Spreadsheet.Sheet} The cropped sheet.
  */
 const cropCols = (sheet, minCols = 0) => {
-  // Get the range of the sheet
+  // Get the data range of the sheet
   const range = sheet.getDataRange();
   // Get the index of the last column in the range
   const lastColumn = range.getLastColumn();
@@ -52,14 +59,14 @@ const cropCols = (sheet, minCols = 0) => {
       sheet.deleteColumns(lastColumn + 1, numColsToDelete);
     }
   }
-  // Return the cropped sheet
+  // Return the cropped sheet for chaining
   return sheet;
 };
 
 /**
  * Deletes any blank rows in a given sheet, leaving a minimum number of rows.
  * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet - The sheet to crop.
- * @param {number} [minRows=2] - The minimum number of rows to leave in the sheet.
+ * @param {number} [minRows = 2] - The minimum number of rows to leave in the sheet.
  * @returns {GoogleAppsScript.Spreadsheet.Sheet} The cropped sheet.
  */
 const cropRows = (sheet, minRows = 2) => {
@@ -86,8 +93,8 @@ const cropRows = (sheet, minRows = 2) => {
 /**
  * Crops a given sheet by deleting any blank rows or columns, leaving a minimum number of rows and columns.
  * @param {GoogleAppsScript.Spreadsheet.Sheet} [sheet=false] - The sheet to crop.
- * @param {number} [minCols=2] - The minimum number of columns to leave in the sheet.
- * @param {number} [minRows=2] - The minimum number of rows to leave in the sheet.
+ * @param {number} [minCols = 2] - The minimum number of columns to leave in the sheet.
+ * @param {number} [minRows = 2] - The minimum number of rows to leave in the sheet.
  * @returns {GoogleAppsScript.Spreadsheet.Sheet|null} The cropped sheet or null if sheet is not defined.
  */
 const cropSheet = (sheet = false, minCols = 2, minRows = 2) => {
@@ -101,13 +108,15 @@ const cropSheet = (sheet = false, minCols = 2, minRows = 2) => {
   console.timeEnd(`Executed "cropSheet()" in`);
   // Return the cropped sheet
   return sheet;
-}
+};
 
 /**
  * @function
- * @alias prepareSheet
  * @summary Creates a new sheet or clears an existing sheet if it already exists.
- * @param {string} sheetName - Name of Sheet (tab name)
+ * @description The function prepares a sheet in a Google Spreadsheet by either clearing its contents or creating a
+ * new sheet if it doesn't exist.
+ * @param {string} [sheetName = false] -  Name of Sheet (tab name). The sheetName parameter is a string that represents the name of the sheet
+ * in a Google Sheets document.
  * @returns {object} - The Prepared Sheet
  */
 function prepareSheet(sheetName = false) {
@@ -137,22 +146,31 @@ function prepareSheet(sheetName = false) {
   }
 }
 
+
 /**
- * This function removes duplicate rows from a Google Sheets spreadsheet.
+ * @summary This function removes duplicate rows from a Google Sheets spreadsheet.
  */
 function removeDuplicateRows() {
-    const sheet = SpreadsheetApp.getActiveSheet();
-    const data = sheet.getDataRange().getValues();
-    const uniqueData = {};
-    for (let row of data) {
-      const key = row.join();
-      uniqueData[key] = uniqueData[key] || row;
-    }
-    sheet.clearContents();
-    const newData = Object.values(uniqueData);
-    sheet.getRange(1, 1, newData.length, newData[0].length).setValues(newData);
+  const sheet = SpreadsheetApp.getActiveSheet();
+  const data = sheet.getDataRange().getValues();
+  const uniqueData = {};
+  for (let row of data) {
+    const key = row.join();
+    uniqueData[key] = uniqueData[key] || row;
   }
+  sheet.clearContents();
+  const newData = Object.values(uniqueData);
+  sheet.getRange(1, 1, newData.length, newData[0].length).setValues(newData);
+}
 
+/**
+ * The `assembleTable` function takes in a 2D array of data and returns an HTML string representing a
+ * table with the data.
+ * @param data - The `data` parameter is an array of arrays. Each inner array represents a row in the
+ * table, and each element within the inner array represents a cell value in that row. The first inner
+ * array is assumed to contain the table headers.
+ * @returns The function `assembleTable` returns a string that represents an HTML table.
+ */
 function assembleTable(data) {
   let tableHtml = `<!-- Start of assembled table string -->
   <table>
@@ -187,6 +205,7 @@ function assembleTable(data) {
 
   return tableHtml;
 }
+
 function addInnerHtml() {
   const table = document.getElementById(`data-table`);
   table.innerHTML = tableHtml;
@@ -263,37 +282,37 @@ class Util {
   static modifyUrlQueryString(url, key, value) {
     let baseUrl, queryString, fragment;
 
-    if (url.indexOf('?') !== -1) {
-      [baseUrl, queryString] = url.split('?');
+    if (url.indexOf("?") !== -1) {
+      [baseUrl, queryString] = url.split("?");
       fragment =
-        queryString.indexOf('#') !== -1
-          ? queryString.substring(queryString.indexOf('#'))
-          : '';
-      queryString = queryString.replace(fragment, '');
-      const regExp = new RegExp(`(^|&)${key}=[^&]*`, 'g');
+        queryString.indexOf("#") !== -1
+          ? queryString.substring(queryString.indexOf("#"))
+          : "";
+      queryString = queryString.replace(fragment, "");
+      const regExp = new RegExp(`(^|&)${key}=[^&]*`, "g");
       const matches = queryString.match(regExp);
 
       if (matches) {
         let modified = false;
 
-        matches.forEach(match => {
-          let replacement = '';
+        matches.forEach((match) => {
+          let replacement = "";
 
           if (!modified) {
-            const val = match.substring(match.indexOf('=') + 1);
+            const val = match.substring(match.indexOf("=") + 1);
             replacement = match.replace(val, value);
             modified = true;
           }
           queryString = queryString.replace(match, replacement);
         });
       } else {
-        const separator = queryString.length > 0 ? '&' : '';
+        const separator = queryString.length > 0 ? "&" : "";
         queryString += `${separator}${key}=${value}`;
       }
     } else {
       baseUrl = url;
       queryString = `${key}=${value}`;
-      fragment = '';
+      fragment = "";
     }
     return `${baseUrl}?${queryString}${fragment}`;
   }
@@ -323,13 +342,13 @@ class Util {
       if (!ob.hasOwnProperty(i)) {
         continue;
       }
-      if (typeof ob[i] === 'object') {
+      if (typeof ob[i] === "object") {
         flatObject = this.flattenObject(ob[i]);
         for (const x in flatObject) {
           if (!flatObject.hasOwnProperty(x)) {
             continue;
           }
-          toReturn[i + (!!isNaN(x) ? '.' + x : '')] = flatObject[x];
+          toReturn[i + (!!isNaN(x) ? "." + x : "")] = flatObject[x];
         }
       } else {
         toReturn[i] = ob[i];
@@ -348,10 +367,10 @@ class Util {
   static getValueByDottedFieldName(ob, fieldName) {
     if (ob == null) {
       return undefined;
-    } else if (fieldName.indexOf('.') == -1) {
+    } else if (fieldName.indexOf(".") == -1) {
       return ob[fieldName];
     } else {
-      const firstDotIndex = fieldName.indexOf('.');
+      const firstDotIndex = fieldName.indexOf(".");
       const subObject = ob[fieldName.substring(0, firstDotIndex)];
       const subFieldPath = fieldName.substring(firstDotIndex + 1);
       return Util.getValueByDottedFieldName(subObject, subFieldPath);
@@ -364,10 +383,10 @@ class Util {
    * @param {*} value
    */
   static setValueByDottedFieldName(ob, fieldName, value) {
-    if (fieldName.indexOf('.') == -1) {
+    if (fieldName.indexOf(".") == -1) {
       ob[fieldName] = value;
     } else {
-      const firstDotIndex = fieldName.indexOf('.');
+      const firstDotIndex = fieldName.indexOf(".");
       const firstLevelFieldName = fieldName.substring(0, firstDotIndex);
       const subObject = ob[firstLevelFieldName] || {};
       ob[firstLevelFieldName] = subObject;
@@ -383,13 +402,13 @@ class Util {
    * @return {!Object<string, *>|string} object or string if not parseable
    */
   static parseCellContent(data) {
-    if (data === '' || data == null) {
-      return '';
+    if (data === "" || data == null) {
+      return "";
     }
-    if (typeof data != 'string') {
+    if (typeof data != "string") {
       return data.toString();
     }
-    if (data.indexOf('{') < 0) {
+    if (data.indexOf("{") < 0) {
       return data;
     }
     try {
@@ -405,25 +424,25 @@ class Util {
    *
    * @param {!Array<!Object>} left
    * @param {!Array<!Object>} right
-   * 
+   *
    * @return {!Array<!Object>}
    */
   static difference(left, right) {
-    return left.filter(object => !Util.isIn(object, right));
+    return left.filter((object) => !Util.isIn(object, right));
   }
 
   /**
    * @summary returns true if the given object appears in the given array
-   * 
+   *
    * @param {!Object<string, *>} object
    * @param {!Array<!Object>} array
-   * 
+   *
    * @return {boolean}
    */
   static isIn(object, array) {
     return (
       array.filter(
-        member => JSON.stringify(member) === JSON.stringify(object)
+        (member) => JSON.stringify(member) === JSON.stringify(object)
       ) > 0
     );
   }
@@ -438,7 +457,7 @@ class ApiUtil {
    */
   static executeApiGetRequest(requestUri, callback) {
     const requestParams = {
-      method: 'get'
+      method: "get",
     };
     ApiUtil.executeGenericRequest_(requestUri, requestParams, callback);
   }
@@ -452,8 +471,8 @@ class ApiUtil {
    */
   static executeApiPatchRequest(requestUri, payload, callback) {
     const requestParams = {
-      method: 'patch',
-      payload: JSON.stringify(payload)
+      method: "patch",
+      payload: JSON.stringify(payload),
     };
     ApiUtil.executeGenericRequest_(requestUri, requestParams, callback);
   }
@@ -467,8 +486,8 @@ class ApiUtil {
    */
   static executeApiPostRequest(requestUri, payload, callback) {
     const requestParams = {
-      method: 'post',
-      payload: JSON.stringify(payload)
+      method: "post",
+      payload: JSON.stringify(payload),
     };
     ApiUtil.executeGenericRequest_(requestUri, requestParams, callback);
   }
@@ -481,7 +500,7 @@ class ApiUtil {
    */
   static executeApiDeleteRequest(requestUri, callback) {
     const requestParams = {
-      method: 'delete'
+      method: "delete",
     };
     ApiUtil.executeGenericRequest_(requestUri, requestParams, callback);
   }
@@ -516,7 +535,7 @@ class ApiUtil {
       callback(result);
       morePages = result.nextPageToken != undefined;
       if (morePages) {
-        url = Util.modifyUrlQueryString(url, 'pageToken', result.nextPageToken);
+        url = Util.modifyUrlQueryString(url, "pageToken", result.nextPageToken);
       }
     }
   }
@@ -534,7 +553,7 @@ class ApiUtil {
       return input;
     }
     for (const [name, value] of Object.entries(params)) {
-      output = output.replace('${' + name + '}', value);
+      output = output.replace("${" + name + "}", value);
     }
     return output;
   }
@@ -547,8 +566,8 @@ class ApiUtil {
    * @return {string} representing the fully-qualified DV360 API URL.
    */
   static buildApiUrl_(requestUri) {
-    const apiEndpoint = 'https://displayvideo.googleapis.com';
-    const apiVersion = 'v1';
+    const apiEndpoint = "https://displayvideo.googleapis.com";
+    const apiVersion = "v1";
 
     return `${apiEndpoint}/${apiVersion}/${requestUri}`;
   }
@@ -566,9 +585,9 @@ class ApiUtil {
   static buildApiParams_(requestParams) {
     const token = ScriptApp.getOAuthToken();
     let params = {
-      contentType: 'application/json',
-      headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
-      muteHttpExceptions: true
+      contentType: "application/json",
+      headers: { Authorization: `Bearer ${token}`, Accept: "application/json" },
+      muteHttpExceptions: true,
     };
     params = Util.extend(params, requestParams);
 
@@ -586,7 +605,7 @@ class CellTranslator {
    * @param {*} input
    */
   toDisplayValue(input) {
-    throw new Error('Not Implemented');
+    throw new Error("Not Implemented");
   }
 
   /**
@@ -594,7 +613,7 @@ class CellTranslator {
    * @param {string} cellContent
    */
   toEntityField(cellContent) {
-    throw new Error('Not Implemented');
+    throw new Error("Not Implemented");
   }
 }
 
@@ -623,7 +642,7 @@ class DateTranslator extends CellTranslator {
     return {
       year: date.getFullYear(),
       month: date.getMonth() + 1,
-      day: date.getDate()
+      day: date.getDate(),
     };
   }
 }
@@ -639,7 +658,7 @@ class SheetUtil {
   static getCellValue_(sheetName, cellId) {
     const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
     const partnerIdCell = spreadsheet.getRange(
-      sheetName + '!' + cellId + ':' + cellId
+      sheetName + "!" + cellId + ":" + cellId
     );
 
     return partnerIdCell.getValue();
@@ -758,8 +777,8 @@ class SheetUtil {
    */
   static getInputCellValues(sheetConfig) {
     const inputValues = {};
-    for (const [name, cellId] of Object.entries(sheetConfig['inputCells'])) {
-      const value = SheetUtil.getCellValue_(sheetConfig['name'], cellId);
+    for (const [name, cellId] of Object.entries(sheetConfig["inputCells"])) {
+      const value = SheetUtil.getCellValue_(sheetConfig["name"], cellId);
       inputValues[name] = value;
     }
     return inputValues;
@@ -805,7 +824,7 @@ class SheetUtil {
     const rowNumber = sheet.getActiveCell().getRowIndex();
     if (rowNumber < sheetConfig.rangeStartRow) {
       throw new Error(
-        `Selected cell in sheet ${sheetConfig.name}` + 'is not in data range'
+        `Selected cell in sheet ${sheetConfig.name}` + "is not in data range"
       );
     }
     return rowNumber;
@@ -821,6 +840,6 @@ class SheetUtil {
     const sheet = spreadsheet.getSheetByName(sheetConfig.name);
 
     const reindexedRows = rowNumbers.map((number, index) => number - index);
-    reindexedRows.forEach(number => sheet.deleteRow(number));
+    reindexedRows.forEach((number) => sheet.deleteRow(number));
   }
 }

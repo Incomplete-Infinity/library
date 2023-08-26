@@ -1,0 +1,202 @@
+[
+  {
+    "name": "debounce",
+    "description": "Creates a debounced version of a function that waits for a specified delay after the last invocation before executing.",
+		"isIncluded": true
+  },
+  {
+    "name": "throttle",
+    "description": "Creates a throttled version of a function that limits the rate of execution to a specified interval.",
+		"isIncluded": true
+  },
+  {
+    "name": "deepClone",
+    "description": "Creates a deep copy of an object, including nested objects and arrays.",
+		"isIncluded": false
+  },
+  {
+    "name": "capitalize",
+    "description": "Converts the first character of a string to uppercase.",
+		"isIncluded": false
+  },
+  {
+    "name": "formatDate",
+    "description": "Formats a Date object into a string based on the specified format.",
+		"isIncluded": false
+  },
+  {
+    "name": "shuffleArray",
+    "description": "Shuffles the elements of an array randomly.",
+		"isIncluded": false
+  },
+  {
+    "name": "groupBy",
+    "description": "Groups an array of objects by a specified key, creating an object with grouped arrays as values.",
+		"isIncluded": false
+  },
+  {
+    "name": "flattenArray",
+    "description": "Flattens a nested array into a single-level array.",
+		"isIncluded": false
+  },
+  {
+    "name": "isEmpty",
+    "description": "Checks if an object or array is empty.",
+		"isIncluded": false
+  },
+  {
+    "name": "parseQueryString",
+    "description": "Parses the query string parameters from a URL and returns them as an object.",
+		"isIncluded": false
+  },
+  {
+    "name": "sortByKey",
+    "description": "Sorts an array of objects based on the values of a specified key.",
+		"isIncluded": false
+  },
+  {
+    "name": "calculateAge",
+    "description": "Calculates the age based on a given birth date.",
+    "isIncluded": false
+  },
+  {
+    "name": "isPalindrome",
+    "description": "Checks if a string is a palindrome.",
+		"isIncluded": false
+  },
+  {
+    "name": "validateEmail",
+    "description": "Validates if a given string is a valid email address.",
+		"isIncluded": false
+  },
+  {
+    "name": "localStorageUtil",
+    "description": "An object containing utility functions to simplify interactions with the browser's localStorage.",
+		"isIncluded": false
+  },
+  {
+    "name": "fetchJson",
+    "description": "Fetches JSON data from a URL and handles common error cases.",
+		"isIncluded": false
+  },
+  {
+    "name": "debounceResize",
+    "description": "Calls a function when the window resize event stops, preventing rapid multiple invocations.",
+		"isIncluded": false
+  },
+  {
+    "name": "generateUUID",
+    "description": "Generates a universally unique identifier (UUID).",
+		"isIncluded": false
+  },
+  {
+    "name": "truncateText",
+    "description": "Truncates a string to a specified maximum length and adds ellipses if necessary.",
+		"isIncluded": false
+  },
+  {
+    "name": "validatePassword",
+    "description": "Validates if a password meets common security criteria.",
+		"isIncluded": false
+  },
+  {
+    "name": "parseJSON",
+    "description": "Parses a JSON string and returns the corresponding JavaScript object. Handles potential parsing errors.",
+		"isIncluded": false
+  },
+  {
+    "name": "formatCurrency",
+    "description": "Formats a numeric value as a currency string with the specified currency code.",
+		"isIncluded": false
+  },
+  {
+    "name": "countOccurrences",
+    "description": "Counts the number of occurrences of a specific item in an array.",
+		"isIncluded": false
+  },
+  {
+    "name": "getRandomInt",
+    "description": "Generates a random integer between a specified minimum and maximum value.",
+		"isIncluded": false
+  },
+  {
+    "name": "deepMerge",
+    "description": "Deeply merges two objects, combining their properties and nested objects.",
+		"isIncluded": false
+  },
+  {
+    "name": "wordCount",
+    "description": "Counts the number of words in a given string.",
+		"isIncluded": false
+  },
+  {
+    "name": "calculateBMI",
+    "description": "Calculates the Body Mass Index (BMI) based on weight (in kilograms) and height (in meters).",
+		"isIncluded": false
+  },
+  {
+    "name": "calculateDistance",
+    "description": "Calculates the distance between two points in a two-dimensional space.",
+		"isIncluded": false
+  },
+  {
+    "name": "camelCase",
+    "description": "Converts a string to camel case (e.g., 'hello world' becomes 'helloWorld').",
+		"isIncluded": false
+  },
+  {
+    "name": "reverseArray",
+    "description": "Reverses the order of elements in an array.",
+		"isIncluded": false
+  },
+  {
+    "name": "getUniqueValues",
+    "description": "Returns an array containing only the unique values from the input array.",
+		"isIncluded": false
+  },
+  {
+    "name": "capitalizeWords",
+    "description": "Converts the first letter of each word in a string to uppercase.",
+		"isIncluded": false
+  },
+  {
+    "name": "timeAgo",
+    "description": "Converts a given date into a human-readable 'time ago' format (e.g., '2 hours ago').",
+		"isIncluded": false
+  },
+  {
+    "name": "localStorageUtil.get",
+    "description": "Retrieves a value from the browser's localStorage based on a specified key.",
+		"isIncluded": false
+  },
+  {
+    "name": "localStorageUtil.set",
+    "description": "Sets a value in the browser's localStorage with a specified key.",
+		"isIncluded": false
+  },
+  {
+    "name": "localStorageUtil.remove",
+    "description": "Removes a value from the browser's localStorage using a specified key.",
+		"isIncluded": false
+  },
+  {
+    "name": "detectMobileDevice",
+    "description": "Detects if the current device is a mobile device.",
+		"isIncluded": false
+  },
+  {
+    "name": "scrollToTop",
+    "description": "Scrolls the page to the top smoothly when invoked.",
+		"isIncluded": false
+  },
+  {
+    "name": "calculateFactorial",
+    "description": "Calculates the factorial of a given positive integer.",
+		"isIncluded": false
+  },
+  {
+    "name": "arrayChunk",
+    "description": "Splits an array into chunks of a specified size.",
+		"isIncluded": false
+  }
+]

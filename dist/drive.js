@@ -1,25 +1,4 @@
 /**
- * Adds a custom property to a file. Unlike Apps Script's DocumentProperties,
- * Drive's custom file properties can be accessed outside of Apps Script and
- * by other applications (if the visibility is set to PUBLIC).
- * @param {string} fileId The ID of the file to add the property to.
- */
-function addCustomProperty(fileId) {
-  try {
-    const property = {
-      key: "department",
-      value: "Sales",
-      visibility: "PUBLIC",
-    };
-    // Adds a property to a file
-    Drive.Properties.insert(property, fileId);
-  } catch (error) {
-    // TODO (developer) Handle exception
-    console.error(`Failed with error: ${error.message}`);
-  }
-}
-
-/**
  * @constant
  * @name cacheUrlFetchApp
  * @alias cacheUrlFetchApp
@@ -37,7 +16,9 @@ const cacheUrlFetchApp = (
   // Set up public cache
   const cache = CacheService.getScriptCache();
   // Turn the requested Url into a string based on the MD5
-  const digest = Utilities.base64Encode(Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, fetchUrl));
+  const digest = Utilities.base64Encode(
+    Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, fetchUrl)
+  );
   // Based on this MD5, lookup the Url in the cache
   const cached = cache.get(digest);
   // If a result has been already cached, use it
@@ -160,7 +141,7 @@ function createTree(folderId, mimeType, fields, accessToken) {
 
 // DriveApp.createFile(); // This is used for automatically enabling Drive API and detecting the scope for using Drive API by the script editor.
 
-((r) => {
+(r => {
   var FilesApp;
   FilesApp = (function () {
     var checkFields,
@@ -213,11 +194,11 @@ function createTree(folderId, mimeType, fields, accessToken) {
         q:
           mtlq !== ""
             ? "'" +
-              parent +
-              "' in parents" +
-              " and " +
-              mtlq +
-              " and trashed=false"
+            parent +
+            "' in parents" +
+            " and " +
+            mtlq +
+            " and trashed=false"
             : "'" + parent + "' in parents and trashed=false",
         fields: fields,
       };
@@ -621,7 +602,7 @@ function createTree(folderId, mimeType, fields, accessToken) {
     parseResFromBatchRequests = function (res) {
       var splittedRes;
       splittedRes = res.split("--batch");
-      return splittedRes.slice(1, splittedRes.length - 1).map((e) => {
+      return splittedRes.slice(1, splittedRes.length - 1).map(e => {
         return {
           contentId: Number(e.match(/Content-ID: response-(\d+)/)[1]),
           status: Number(e.match(/HTTP\/\d+.\d+ (\d+)/)[1]),
@@ -672,17 +653,16 @@ function createTree(folderId, mimeType, fields, accessToken) {
 })(this);
 
 /**
- * Returns a Google Drive folder in the same location 
+ * Returns a Google Drive folder in the same location
  * in Drive where the spreadsheet is located. First, it checks if the folder
  * already exists and returns that folder. If the folder doesn't already
  * exist, the script creates a new one. The folder's name is set by the
  * "OUTPUT_FOLDER_NAME" variable from the Code.gs file.
  *
- * @param {string} folderName - Name of the Drive folder. 
+ * @param {string} folderName - Name of the Drive folder.
  * @return {object} Google Drive Folder
  */
 function getFolderByName(folderName) {
-
   // Gets the Drive Folder of where the current spreadsheet is located.
   const ssId = SpreadsheetApp.getActiveSpreadsheet().getId();
   const parentFolder = DriveApp.getFileById(ssId).getParents().next();
@@ -698,7 +678,8 @@ function getFolderByName(folderName) {
     }
   }
   // Creates a new folder if one does not already exist.
-  return parentFolder.createFolder(folderName)
+  return parentFolder
+    .createFolder(folderName)
     .setDescription(`Created by Apps Script`);
 }
 
@@ -714,12 +695,13 @@ function getFolderByName(folderName) {
  */
 function getFolderContents(folderId = `root`) {
   const contents = {
-    children: []
+    children: [],
   };
-  const topFolder = folderId == `root`
-    ? DriveApp.getRootFolder()
-    // May throw exception if the folderId is invalid or app doesn't have permission to access.
-    : DriveApp.getFolderById(folderId) ;
+  const topFolder =
+    folderId == `root`
+      ? DriveApp.getRootFolder()
+      : // May throw exception if the folderId is invalid or app doesn't have permission to access.
+      DriveApp.getFolderById(folderId);
   contents.rootName = `${topFolder.getName()}/`;
   const files = topFolder.getFiles();
   while (files.hasNext()) {
@@ -802,7 +784,7 @@ const propService = {
           throw new Error(`The "object" parameter is empty or undefined`);
         }
         const scrptProps = PropertiesService.getScriptProperties();
-        Object.keys(object).forEach((key) =>
+        Object.keys(object).forEach(key =>
           scrptProps.setProperty(key, object[key])
         );
         return object;
@@ -828,7 +810,7 @@ const propService = {
         }
         const scrptProps = PropertiesService.getScriptProperties();
         Object.keys(object).forEach(
-          (key) => (object[key] = scrptProps.getProperty(key))
+          key => (object[key] = scrptProps.getProperty(key))
         );
         return object;
       } catch (error) {
@@ -854,7 +836,7 @@ const propService = {
           throw new Error(`The "object" parameter is empty or undefined`);
         }
         const usrProps = PropertiesService.getUserProperties();
-        Object.keys(object).forEach((key) =>
+        Object.keys(object).forEach(key =>
           usrProps.setProperty(key, object[key])
         );
         return object;
@@ -878,7 +860,7 @@ const propService = {
         }
         const usrProps = PropertiesService.getUserProperties();
         Object.keys(object).forEach(
-          (key) => (object[key] = usrProps.getProperty(key))
+          key => (object[key] = usrProps.getProperty(key))
         );
         return object;
       } catch (error) {
@@ -902,7 +884,7 @@ const propService = {
           throw new Error(`The "object" parameter is empty or undefined`);
         }
         const scrptProps = PropertiesService.getScriptProperties();
-        Object.keys(object).forEach((key) =>
+        Object.keys(object).forEach(key =>
           scrptProps.setProperty(key, object[key])
         );
         return object;
@@ -928,7 +910,7 @@ const propService = {
         }
         const scrptProps = PropertiesService.getScriptProperties();
         Object.keys(object).forEach(
-          (key) => (object[key] = scrptProps.getProperty(key))
+          key => (object[key] = scrptProps.getProperty(key))
         );
         return object;
       } catch (error) {
