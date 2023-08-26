@@ -1,0 +1,548 @@
+<!DOCTYPE html><html lang="en" style="font-size:16px"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Source: eve-online.js</title><!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]--><script src="scripts/third-party/hljs.js" defer="defer"></script><script src="scripts/third-party/hljs-line-num.js" defer="defer"></script><script src="scripts/third-party/popper.js" defer="defer"></script><script src="scripts/third-party/tippy.js" defer="defer"></script><script src="scripts/third-party/tocbot.min.js"></script><script>var baseURL="/",locationPathname="";baseURL=(locationPathname=document.location.pathname).substr(0,locationPathname.lastIndexOf("/")+1)</script><link rel="stylesheet" href="styles/clean-jsdoc-theme.min.css"><svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none"><defs><symbol id="copy-icon" viewbox="0 0 488.3 488.3"><g><path d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124    C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124    c0-6.4,5.2-11.6,11.6-11.6h227c6.4,0,11.6,5.2,11.6,11.6V449.6z"/><path d="M401.05,0h-227c-21.3,0-38.6,17.3-38.6,38.6c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5c0-6.4,5.2-11.6,11.6-11.6h227    c6.4,0,11.6,5.2,11.6,11.6v325.7c0,6.4-5.2,11.6-11.6,11.6c-7.5,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5c21.3,0,38.6-17.3,38.6-38.6    V38.6C439.65,17.3,422.35,0,401.05,0z"/></g></symbol><symbol id="search-icon" viewBox="0 0 512 512"><g><g><path d="M225.474,0C101.151,0,0,101.151,0,225.474c0,124.33,101.151,225.474,225.474,225.474    c124.33,0,225.474-101.144,225.474-225.474C450.948,101.151,349.804,0,225.474,0z M225.474,409.323    c-101.373,0-183.848-82.475-183.848-183.848S124.101,41.626,225.474,41.626s183.848,82.475,183.848,183.848    S326.847,409.323,225.474,409.323z"/></g></g><g><g><path d="M505.902,476.472L386.574,357.144c-8.131-8.131-21.299-8.131-29.43,0c-8.131,8.124-8.131,21.306,0,29.43l119.328,119.328    c4.065,4.065,9.387,6.098,14.715,6.098c5.321,0,10.649-2.033,14.715-6.098C514.033,497.778,514.033,484.596,505.902,476.472z"/></g></g></symbol><symbol id="font-size-icon" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11.246 15H4.754l-2 5H.6L7 4h2l6.4 16h-2.154l-2-5zm-.8-2L8 6.885 5.554 13h4.892zM21 12.535V12h2v8h-2v-.535a4 4 0 1 1 0-6.93zM19 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></symbol><symbol id="add-icon" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></symbol><symbol id="minus-icon" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 11h14v2H5z"/></symbol><symbol id="dark-theme-icon" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 7a7 7 0 0 0 12 4.9v.1c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2h.1A6.979 6.979 0 0 0 10 7zm-6 5a8 8 0 0 0 15.062 3.762A9 9 0 0 1 8.238 4.938 7.999 7.999 0 0 0 4 12z"/></symbol><symbol id="light-theme-icon" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z"/></symbol><symbol id="reset-icon" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M18.537 19.567A9.961 9.961 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 2.136-.67 4.116-1.81 5.74L17 12h3a8 8 0 1 0-2.46 5.772l.997 1.795z"/></symbol><symbol id="down-icon" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path></symbol><symbol id="codepen-icon" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.5 13.202L13 15.535v3.596L19.197 15 16.5 13.202zM14.697 12L12 10.202 9.303 12 12 13.798 14.697 12zM20 10.869L18.303 12 20 13.131V10.87zM19.197 9L13 4.869v3.596l3.5 2.333L19.197 9zM7.5 10.798L11 8.465V4.869L4.803 9 7.5 10.798zM4.803 15L11 19.131v-3.596l-3.5-2.333L4.803 15zM4 13.131L5.697 12 4 10.869v2.262zM2 9a1 1 0 0 1 .445-.832l9-6a1 1 0 0 1 1.11 0l9 6A1 1 0 0 1 22 9v6a1 1 0 0 1-.445.832l-9 6a1 1 0 0 1-1.11 0l-9-6A1 1 0 0 1 2 15V9z"/></symbol><symbol id="close-icon" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/></symbol><symbol id="menu-icon" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"/></symbol></defs></svg></head><body class="dark" data-theme="dark"><div class="sidebar-container"><div class="sidebar" id="sidebar"><a href="/" class="sidebar-title sidebar-title-anchor">Home</a><div class="sidebar-items-container"><div class="sidebar-section-title with-arrow" data-isopen="false" id="wKP4VGTQTptDLob77KUFw"><div>Classes</div><svg><use xlink:href="#down-icon"></use></svg></div><div class="sidebar-section-children-container"><div class="sidebar-section-children"><a href="CellTranslator.html">CellTranslator</a></div><div class="sidebar-section-children"><a href="DateTranslator.html">DateTranslator</a></div></div><div class="sidebar-section-title with-arrow" data-isopen="false" id="Wqzp_4VbgQqmzAREOViJW"><div>Global</div><svg><use xlink:href="#down-icon"></use></svg></div><div class="sidebar-section-children-container"><div class="sidebar-section-children"><a href="global.html#assembleTable">assembleTable</a></div><div class="sidebar-section-children"><a href="global.html#assembleTypesList">assembleTypesList</a></div><div class="sidebar-section-children"><a href="global.html#assembleTypesListForSheet">assembleTypesListForSheet</a></div><div class="sidebar-section-children"><a href="global.html#buildRequest">buildRequest</a></div><div class="sidebar-section-children"><a href="global.html#cacheUrlFetchApp">cacheUrlFetchApp</a></div><div class="sidebar-section-children"><a href="global.html#cardinalToOrdinal">cardinalToOrdinal</a></div><div class="sidebar-section-children"><a href="global.html#contractAppraisal">contractAppraisal</a></div><div class="sidebar-section-children"><a href="global.html#createTree">createTree</a></div><div class="sidebar-section-children"><a href="global.html#cropCols">cropCols</a></div><div class="sidebar-section-children"><a href="global.html#cropRows">cropRows</a></div><div class="sidebar-section-children"><a href="global.html#cropSheet">cropSheet</a></div><div class="sidebar-section-children"><a href="global.html#daysSince">daysSince</a></div><div class="sidebar-section-children"><a href="global.html#driveWrite">driveWrite</a></div><div class="sidebar-section-children"><a href="global.html#ensure2dArray">ensure2dArray</a></div><div class="sidebar-section-children"><a href="global.html#fetchAllianceKills">fetchAllianceKills</a></div><div class="sidebar-section-children"><a href="global.html#fetchAllianceLosses">fetchAllianceLosses</a></div><div class="sidebar-section-children"><a href="global.html#fetchCorporationKills">fetchCorporationKills</a></div><div class="sidebar-section-children"><a href="global.html#fetchCorporationLosses">fetchCorporationLosses</a></div><div class="sidebar-section-children"><a href="global.html#getAllFoldersInFolder">getAllFoldersInFolder</a></div><div class="sidebar-section-children"><a href="global.html#getAllInFolder">getAllInFolder</a></div><div class="sidebar-section-children"><a href="global.html#getDateTimeCol">getDateTimeCol</a></div><div class="sidebar-section-children"><a href="global.html#getEveMarketerData_">getEveMarketerData_</a></div><div class="sidebar-section-children"><a href="global.html#getFilesAndFoldersInFolder">getFilesAndFoldersInFolder</a></div><div class="sidebar-section-children"><a href="global.html#getFolderByName">getFolderByName</a></div><div class="sidebar-section-children"><a href="global.html#getFolderContents">getFolderContents</a></div><div class="sidebar-section-children"><a href="global.html#getIndustryPrices">getIndustryPrices</a></div><div class="sidebar-section-children"><a href="global.html#getTypeIds">getTypeIds</a></div><div class="sidebar-section-children"><a href="global.html#loadRegionAggregates">loadRegionAggregates</a></div><div class="sidebar-section-children"><a href="global.html#onEdit">onEdit</a></div><div class="sidebar-section-children"><a href="global.html#prepareSheet">prepareSheet</a></div><div class="sidebar-section-children"><a href="global.html#readDrive">readDrive</a></div><div class="sidebar-section-children"><a href="global.html#removeDuplicateRows">removeDuplicateRows</a></div><div class="sidebar-section-children"><a href="global.html#resolveIdsToNames">resolveIdsToNames</a></div><div class="sidebar-section-children"><a href="global.html#timestamp">timestamp</a></div></div></div></div></div><div class="navbar-container" id="VuAckcnZhf"><nav class="navbar"><div class="navbar-left-items"></div><div class="navbar-right-items"><div class="navbar-right-item"><button class="icon-button search-button" aria-label="open-search"><svg><use xlink:href="#search-icon"></use></svg></button></div><div class="navbar-right-item"><button class="icon-button theme-toggle" aria-label="toggle-theme"><svg><use class="theme-svg-use" xlink:href="#light-theme-icon"></use></svg></button></div><div class="navbar-right-item"><button class="icon-button font-size" aria-label="change-font-size"><svg><use xlink:href="#font-size-icon"></use></svg></button></div></div><nav></nav></nav></div><div class="toc-container"><div class="toc-content"><span class="bold">On this page</span><div id="eed4d2a0bfd64539bb9df78095dec881"></div></div></div><div class="body-wrapper"><div class="main-content"><div class="main-wrapper"><section id="source-page" class="source-page"><header><h1 id="title" class="has-anchor">eve-online.js</h1></header><article><pre class="prettyprint source lang-js"><code>"use strict";
+const { info, log, time, timeEnd, warn, error } = console;
+const { parse, stringify } = JSON;
+const { fetch } = UrlFetchApp;
+
+const esiVersion = `latest`;
+const domain = `https://esi.evetech.net/${esiVersion}/`;
+const dataSource = `datasource=tranquility`;
+
+const headers = {
+  Accept: "application/json",
+  "Content-Type": "application/json",
+};
+const userAgent = `
+  Mozilla/5.0 (
+    compatible; 
+    Google-Apps-Script;
+    beanserver;
+    +https://script.google.com;
+    ${ScriptApp.getScriptId()};
+  )`;
+const muteHttpExceptions = true;
+
+const tools = {
+  ensureArray: data => [data].flat(),
+  ensure2DArray: array2d =>
+    tools.ensureArray(array2d).map(array1d => tools.ensureArray(array1d)),
+};
+
+const http = {
+  // Function to handle GET request
+  getRequest: async url => {
+    time(`Handled http GET request @ ${url} in `);
+    info(`Handling http GET request @ ${url}.`)
+    const options = {
+      method: "GET",
+      headers,
+      muteHttpExceptions,
+      "User-Agent": userAgent
+    };
+    timeEnd(`Handled http GET request @ ${url} in `);
+
+    return await fetch(url, options);
+  },
+  // Function to handle POST request
+  postRequest: async (url, payload) => {
+        time(`Handled http POST request @ ${url} in `);
+    info(`Handling http POSt request @ ${url}.`)
+    const options = {
+      method: "POST",
+      headers,
+      payload,
+      muteHttpExceptions,
+      "User-Agent": userAgent
+    };
+  timeEnd(`Handled http POST request @ ${url} in `);
+
+    return await fetch(url, options);
+  },
+};
+
+/**
+ * Retrieves the type IDs from the ESI API.
+ * @param {number} [page=1] - The page number to retrieve the type IDs from.
+ * @returns {Promise&lt;Array>} - The array of type IDs.
+ * @throws {Error} - If there is an error retrieving the type IDs.
+ */
+async function getTypeIds(page = 1) {
+  const path = `universe/types/`;
+  const url = `${domain}${path}?${dataSource}&amp;page=${page}`;
+
+  try {
+    const response = await http.getRequest(url);
+    const xPages = response.getHeaders()["x-pages"];
+    const content = response.getContentText();
+    const data = parse(content);
+
+    // If there are more pages to retrieve, recursively concatenate the data
+    // from subsequent pages, otherwise return the final array of type IDs.
+    return page &lt; xPages ? data.concat(await getTypeIds(page + 1)) : data;
+  } catch (e) {
+    console.error("Error retrieving type IDs:", e.message);
+    throw error;
+  }
+}
+
+/**
+ * Resolves the given type IDs to their corresponding names.
+ * @param {Array} typeIds - The array of type IDs to resolve.
+ * @returns {Promise&lt;Array>} - The array of resolved type names.
+ * @throws {Error} - If there is an error resolving the type IDs to names.
+ */
+async function resolveIdsToNames(typeIds) {
+  const path = `universe/names/`;
+  const url = `${domain}${path}?${dataSource}`;
+
+  try {
+    const names = [];
+    while (typeIds.length > 0) {
+      // Split the type IDs into groups of 1000 or less for efficient processing
+      const group = typeIds.splice(0, 1000);
+      const payload = stringify(group);
+      const response = await http.postRequest(url, payload);
+      const content = response.getContentText();
+      const data = parse(content);
+      // Concatenate the resolved names to the `names` array
+      names.push(...data);
+    }
+
+    // Return the array of resolved type names
+    return names.map(({ id, name }) => ({ id, name }));
+  } catch (e) {
+    error("Error resolving type IDs to names:", e.message);
+    throw error;
+  }
+}
+
+/**
+ * Assembles the list of types with their names.
+ * @returns {Promise&lt;Array>} - The array of types with their names.
+ * @throws {Error} - If there is an error assembling the types list.
+ */
+async function assembleTypesList() {
+  try {
+    // Retrieve the type IDs from the ESI API
+    const typeIds = await getTypeIds();
+    // Resolve the type IDs to their corresponding names
+    const typesList = await resolveIdsToNames(typeIds);
+
+    // Return the array of types with their names
+    return typesList;
+  } catch (e) {
+    error("Error assembling types list:", e.message);
+    throw error;
+  }
+}
+
+/**
+ * Assembles the list of types with their names into a 2-dimensional array for use in a Google Sheet.
+ * @returns {Promise&lt;Array>} - The 2D array of types with their names.
+ * @throws {Error} - If there is an error assembling the types list for the sheet.
+ */
+async function assembleTypesListForSheet() {
+  try {
+    // Assemble the list of types with their names
+    const types = await assembleTypesList();
+    // Convert the types array to a 2D array with ID and name columns
+    const typesArray = tools.ensure2DArray(
+      types.map(({ id, name }) => [Number(id), name])
+    );
+    // Sort the type IDs in ascending order
+    const sorted = typesArray.sort((typeA, typeB) => typeA[0] - typeB[0]);
+
+    // Return the sorted 2D array of types with their names
+    return await sorted;
+  } catch (error) {
+      error("Error assembling types list for sheet:", e.message);
+    throw error;
+  }
+}
+
+/**
+ * This function builds and sends multiple requests to retrieve market history data for specific item
+ * types in a specific region using the GESI library in JavaScript.
+ */
+function buildRequest(typeIds, regionId = 10000002) {
+  typeIds = extractIds(typeIds);
+
+  const client = GESI.getClient().setFunction(`markets_region_history`);
+  const requests = typeIds.map((typeId) => client.buildRequest({
+      type_id: typeId,
+      region_id: regionId
+    })
+  );
+  log(requests);
+  const responses = UrlFetchApp.fetchAll(requests);
+  log(responses);
+
+  return responses;
+}
+
+/**
+ * The function `contractAppraisal` takes in several parameters and constructs a URL for an API request
+ * to the Contracts Appraisal service.
+ * @param [typeId=1296] - The ID of the item type being appraised.
+ * @param [includePrivate=false] - a boolean value indicating whether to include private contracts in
+ * the appraisal or not. Default is false.
+ * @param [includeBpc=false] - A boolean value indicating whether or not to include Blueprint Copies
+ * (BPCs) in the appraisal.
+ * @param [security] - The security level of the location where the appraisal is being done. It has a
+ * default value of "highsec" which stands for high security space in the game EVE Online. Other
+ * possible values are "lowsec" and "nullsec".
+ * @param [materialEfficiency=0] - A number representing the material efficiency level of the item
+ * being appraised. Defaults to 0 if not provided.
+ * @param [timeEfficiency=0] - A number representing the time efficiency level of the item being
+ * appraised. It has a default value of 0.
+ */
+function contractAppraisal(
+  typeId = 1296,
+  includePrivate = false,
+  includeBpc = false,
+  security = `highsec`,
+  materialEfficiency = 0,
+  timeEfficiency = 0
+) {
+  const domain = `https://api.contractsappraisal.com`;
+  const endPoint = `/v1/prices/`;
+  console.log(arguments);
+  const parameters = [
+    `include_private=${includePrivate}`,
+    `bpc=${includeBpc}`,
+    `security=${security}`,
+    `material_efficiency=${materialEfficiency}`,
+    `time_efficiency=${timeEfficiency}`
+  ];
+  const query = `?1`;
+
+  const url = `${domain}${endPoint}${query}`;
+  console.log(url);
+}
+
+function extractIds(dirtyTypeIds) {
+  return [
+    ...new Set(
+      dirtyTypeIds
+        .flat(Infinity)
+        .filter(Number)
+        .sort((a, b) => a - b)
+    )
+  ];
+}
+
+/**
+ * This function fetches all kills for a given alliance ID from the zKillboard API.
+ * @param [allianceID=99011193] - The ID of the alliance for which you want to fetch the kills data
+ * from the zKillboard API. The default value is set to 99011193, which is the alliance ID for Pandemic
+ * Horde in EVE Online.
+ * @returns The function `fetchAllianceKills_` is returning the result of a URL fetch request to the
+ * zKillboard API for all kills made by the specified alliance ID. The result could be a JSON object
+ * containing information about the kills made by the alliance.
+ */
+function fetchAllianceKills(allianceID = 99011193) {
+  return cacheUrlFetchApp(`https://zkillboard.com/api/kills/allianceID/${allianceID}/`);
+}
+
+/**
+ * This function fetches all losses for a given alliance ID from the zKillboard API.
+ * @param [allianceID=99011193] - The allianceID parameter is the unique identifier for an alliance in
+ * the game EVE Online. It is used in the zKillboard API to retrieve information about losses (ships
+ * destroyed) for a specific alliance.
+ * @returns the result of a URL fetch request to the zKillboard API for all losses of a specified
+ * alliance ID.
+ */
+function fetchAllianceLosses(allianceID = 99011193) {
+  return cacheUrlFetchApp(`https://zkillboard.com/api/losses/allianceID/${allianceID}/`);
+}
+
+/**
+ * Fetches corporation kills from the zKillboard API.
+ *
+ * @param {number} [corporationId = 98631147] - The ID of the corporation to fetch kills for. Defaults to 98631147.
+ * @returns {Promise&lt;Response>} - A Promise that resolves to the response from the API.
+ */
+function fetchCorporationKills(corporationId = 98631147) {
+  return JSON.parse(
+    UrlFetchApp.fetch(
+      `https://zkillboard.com/api/kills/corporationID/${corporationId}/`
+    ).getContentText()
+  );
+}
+
+/**
+ * Fetches the losses for a specific corporation from the zKillboard API.
+ *
+ * @param {number} [corporationId = 98631147] - The ID of the corporation to fetch losses for.
+ * @returns {GoogleAppsScript.URL_Fetch.HTTPResponse} - The HTTP response object containing the fetched loss data.
+ */
+async function fetchCorporationLosses(corporationId = 98631147) {
+  return await JSON.parse(
+    UrlFetchApp.fetch(
+      `https://zkillboard.com/api/losses/corporationID/${corporationId}/`
+    ).getContentText()
+  );
+}
+
+/**
+ * This function retrieves market data for a list of item IDs from the EveMarketer API.
+ * @param typeIDs - An array of EVE Online item type IDs for which market data is requested.
+ * @param [regionID=10000002] - The ID of the region to retrieve market data for. The default value is
+ * 10000002, which corresponds to the region of The Forge in EVE Online.
+ * @param [systemId=false] - The ID of the solar system to retrieve market data for. If not specified,
+ * market data for the entire region will be retrieved instead.
+ * @returns An array of fetch requests.
+ */
+function getEveMarketerData_(typeIDs, regionID = 10000002, systemId = false) {
+	// Jita: 30000142
+	const result = [];
+
+	const domain = `https://api.evemarketer.com`;
+	const subDirectory = `/ec/marketstat/json`;
+
+	const chunkSize = 100;
+	try {
+		if (typeIDs.length == 0) {
+			throw new Error(
+				`Required parameter, "typeIDs" is not defined!`
+			);
+
+		} else {
+			do {
+				const length = typeIDs.length;
+				const chunk = length > chunkSize ? chunkSize : length;
+				const encodedTypes = typeIDs.splice(0, chunk).join(`&amp;typeid=`);
+				const query = systemId ? `${encodedTypes}?typeid=&amp;usesystem=${systemID}` : `${encodedTypes}?typeid=&amp;regionlimit=${regionID}` ;
+
+				const url = `${domain}${subDirectory}${query}`;
+				result.push(
+					fetch(url)
+				);
+			} while (typeIDs.length > 0);
+		}
+
+	} catch (error) {
+		console.error(error.message);
+
+	} finally {
+		return result;
+	}
+}
+
+/**
+ * The function retrieves industry prices for items in the game EVE Online and returns them in a sorted
+ * array, with the option to include headers.
+ * @param [showHeaders=true] - A boolean parameter that determines whether or not to include headers in
+ * the returned data. If set to true, the function will return an array with headers as the first
+ * element and the prices as subsequent elements. If set to false, the function will only return the
+ * prices array.
+ * @returns The function `getIndustryPrices` returns an array of arrays containing the `Type ID`,
+ * `Average Price`, and `Adjusted Price` for each item in the EVE Online game, sorted by `Type ID`. The
+ * first array in the returned array contains the headers for each column (`Type ID`, `Average Price`,
+ * `Adjusted Price`) if `showHeaders` is set to `true`.
+ */
+function getIndustryPrices(showHeaders = true) {
+  const headers = [`Type ID`, `Average Price`, `Adjusted Price`];
+  const url = `https://esi.evetech.net/latest/markets/prices/?${dataSource}`;
+  const options = { method: `GET` };
+  const response = UrlFetchApp.fetch(url, options);
+  const code = response.getResponseCode();
+
+  if (code !== 200) {
+    throw new Error(`Failed to fetch prices
+    Response Code: ${code}`);
+  }
+
+  const content = response.getContentText();
+  const json = JSON.parse(content);
+  const prices = json
+    .map((item) => [item.type_id, item.average_price, item.adjusted_price])
+    .sort((a, b) => a[0] - b[0]);
+
+  return showHeaders ? [headers, ...prices] : prices;
+}
+
+"use strict";
+
+const emailAddress = "" ?? false;
+const emailUa = (emailAddress) 
+  ? `email: ${emailAddress}`
+  : null;
+
+/**
+ * @summary Loads region aggregates for the given price IDs.
+ * @param {number[]|string[]} priceIds - List of type IDs.
+ * @param {number} [regionId=10000002] - Region ID. Defaults to 10000002 (The Forge).
+ * @param {boolean} [includeHeaders=true] - Whether to include headers in the result. Defaults to true.
+ * @returns {Array&lt;Array&lt;number|string>>} - Array of aggregated prices.
+ * @throws {string} - Throws an error if priceIds parameter is not defined.
+ */
+function loadRegionAggregates(
+  priceIds,
+  regionId = 10000002,
+  includeHeaders = true
+) {
+  // Check if priceIds parameter is defined
+  if (typeof priceIds === "undefined") {
+    throw 'Required variable, "priceIds" is not defined! Need a list of type IDs!';
+  }
+
+  const config = {
+    batchSize: 100,
+    fetchOptions: {
+      method: "get",
+      payload: "",
+      "User-Agent": `
+  Mozilla/5.0 (
+    compatible; 
+    Google-Apps-Script;
+    beanserver;
+    +https://script.google.com;
+    id: ${ScriptApp.getScriptId()};
+    email: ${email}
+  )`,
+    },
+    // comment out (//) any headers you don't want in the output   
+    headers: [
+      "Buy Volume",
+      "Buy Weighted Average",
+      "Buy Max",
+      //'Buy Min',
+      "Buy Std Dev",
+      "Buy Median",
+      "Buy Percentile",
+      "Sell Volume",
+      "Sell Weighted Average",
+      //'Sell Max',
+      "Sell Min",
+      "Sell Std Dev",
+      "Sell Median",
+      "Sell Percentile",
+    ],
+    propertyMappings: {
+      volume: /Volume/i,
+      weightedAverage: /Weighted Average/i,
+      max: /Max/i,
+      min: /Min/i,
+      stddev: /Std Dev/i,
+      median: /Median/i,
+      percentile: /Percentile/i,
+    },
+  };
+
+  // Map the headers to properties based on the defined property mappings
+  const properties = config.headers.map(item => {
+    const mapping = Object.entries(config.propertyMappings).find(([_, regex]) =>
+      regex.test(item)
+    );
+
+    const [propertyKey] = mapping &amp;&amp; mapping;
+    const categoryKey = item &amp;&amp; item.split(" ")[0]; // Extract the category key from the header
+
+    return mapping ? `${categoryKey.toLowerCase()}.${propertyKey}` : null;
+  });
+
+  /**
+   * Fetches aggregates data from the API for the specified batches and region ID.
+   *
+   * @param {Array&lt;Array&lt;number|string>>} batches - Array of batches containing type IDs.
+   * @param {number} regionId - Region ID.
+   * @returns {Array&lt;object>} - Array of fetched responses.
+   */
+  const fetchAggregatesData = (batches, regionId) => {
+    const domain = "https://market.fuzzwork.co.uk/";
+    const url = `${domain}aggregates/?region=${regionId}&amp;types=`;
+    const { fetchOptions } = config;
+    return UrlFetchApp.fetchAll(
+      batches.map(batch => ({ url: url + batch.join(","), fetchOptions }))
+    );
+  };
+
+  /**
+   * Returns an array of clean type IDs by removing duplicates and filtering out non-numeric values.
+   *
+   * @param {number[]|string[]} priceIds - List of type IDs.
+   * @returns {number[]} - Array of clean type IDs.
+   */
+  const getCleanTypeIds = priceIds => {
+    return Array.from(new Set([priceIds].flat(Infinity).filter(Number)));
+  };
+
+  /**
+   * Splits the array of type IDs into batches based on the defined batch size.
+   *
+   * @param {number[]} typeIds - Array of type IDs.
+   * @returns {Array&lt;Array&lt;number>>} - Array of batches.
+   */
+  const splitIntoBatches = typeIds => {
+    const { batchSize } = config;
+    return Array.from(
+      { length: Math.ceil(typeIds.length / batchSize) },
+      (_, index) => {
+        const start = index * batchSize;
+        const end = start + batchSize;
+        return typeIds.slice(start, end);
+      }
+    );
+  };
+
+  /**
+   * Processes the fetched responses and extracts the required data.
+   *
+   * @param {Array&lt;object>} responses - Array of fetched responses.
+   * @param {number[]} typeIds - Array of type IDs.
+   * @returns {Array&lt;object>} - Array of extracted data.
+   */
+  const processResponses = (responses, typeIds) => {
+    const extractedData = [];
+
+    responses.forEach((response, index) => {
+      const { batchSize } = config;
+      const json = JSON.parse(response.getContentText());
+      if (json) {
+        const chunk = typeIds.slice(index * batchSize, (index + 1) * batchSize);
+        chunk.forEach(entry => {
+          const data = json[entry];
+          const extractedEntry = properties.reduce((obj, prop) => {
+            if (prop) {
+              const [objectKey, propertyKey] = prop.split(".");
+              if (
+                data &amp;&amp;
+                data[objectKey] &amp;&amp;
+                data[objectKey][propertyKey] !== undefined
+              ) {
+                const value = +data[objectKey][propertyKey];
+                obj[prop] = value;
+              }
+            }
+            return obj;
+          }, {});
+
+          extractedData.push(extractedEntry);
+        });
+      }
+    });
+
+    return extractedData;
+  };
+
+  const cleanTypeIds = getCleanTypeIds(priceIds);
+  const batches = splitIntoBatches(cleanTypeIds);
+  const responses = fetchAggregatesData(batches, regionId);
+  const aggregatedPrices = processResponses(responses, cleanTypeIds);
+
+  return includeHeaders
+    ? [
+        config.headers,
+        ...aggregatedPrices.map(row => properties.map(prop => row[prop])),
+      ]
+    : aggregatedPrices.map(row => properties.map(prop => row[prop]));
+}
+
+function zKillWebSocket() {
+  const socketUrl = `wss://zkillboard.com/websocket/`
+  const webSocket = new WebSocket(socketUrl, protocol);
+    webSocket.send({"action": "sub", "channel": "killstream"});
+  console.log(webSocket);
+}</code></pre></article></section></div></div></div><div class="search-container" id="PkfLWpAbet" style="display:none"><div class="wrapper" id="iCxFxjkHbP"><button class="icon-button search-close-button" id="VjLlGakifb" aria-label="close search"><svg><use xlink:href="#close-icon"></use></svg></button><div class="search-box-c"><svg><use xlink:href="#search-icon"></use></svg> <input type="text" id="vpcKVYIppa" class="search-input" placeholder="Search..." autofocus></div><div class="search-result-c" id="fWwVHRuDuN"><span class="search-result-c-text">Type anything to view search result</span></div></div></div><div class="mobile-menu-icon-container"><button class="icon-button" id="mobile-menu" data-isopen="false" aria-label="menu"><svg><use xlink:href="#menu-icon"></use></svg></button></div><div id="mobile-sidebar" class="mobile-sidebar-container"><div class="mobile-sidebar-wrapper"><a href="/" class="sidebar-title sidebar-title-anchor">Home</a><div class="mobile-nav-links"></div><div class="mobile-sidebar-items-c"><div class="sidebar-section-title with-arrow" data-isopen="false" id="wKP4VGTQTptDLob77KUFw"><div>Classes</div><svg><use xlink:href="#down-icon"></use></svg></div><div class="sidebar-section-children-container"><div class="sidebar-section-children"><a href="CellTranslator.html">CellTranslator</a></div><div class="sidebar-section-children"><a href="DateTranslator.html">DateTranslator</a></div></div><div class="sidebar-section-title with-arrow" data-isopen="false" id="Wqzp_4VbgQqmzAREOViJW"><div>Global</div><svg><use xlink:href="#down-icon"></use></svg></div><div class="sidebar-section-children-container"><div class="sidebar-section-children"><a href="global.html#assembleTable">assembleTable</a></div><div class="sidebar-section-children"><a href="global.html#assembleTypesList">assembleTypesList</a></div><div class="sidebar-section-children"><a href="global.html#assembleTypesListForSheet">assembleTypesListForSheet</a></div><div class="sidebar-section-children"><a href="global.html#buildRequest">buildRequest</a></div><div class="sidebar-section-children"><a href="global.html#cacheUrlFetchApp">cacheUrlFetchApp</a></div><div class="sidebar-section-children"><a href="global.html#cardinalToOrdinal">cardinalToOrdinal</a></div><div class="sidebar-section-children"><a href="global.html#contractAppraisal">contractAppraisal</a></div><div class="sidebar-section-children"><a href="global.html#createTree">createTree</a></div><div class="sidebar-section-children"><a href="global.html#cropCols">cropCols</a></div><div class="sidebar-section-children"><a href="global.html#cropRows">cropRows</a></div><div class="sidebar-section-children"><a href="global.html#cropSheet">cropSheet</a></div><div class="sidebar-section-children"><a href="global.html#daysSince">daysSince</a></div><div class="sidebar-section-children"><a href="global.html#driveWrite">driveWrite</a></div><div class="sidebar-section-children"><a href="global.html#ensure2dArray">ensure2dArray</a></div><div class="sidebar-section-children"><a href="global.html#fetchAllianceKills">fetchAllianceKills</a></div><div class="sidebar-section-children"><a href="global.html#fetchAllianceLosses">fetchAllianceLosses</a></div><div class="sidebar-section-children"><a href="global.html#fetchCorporationKills">fetchCorporationKills</a></div><div class="sidebar-section-children"><a href="global.html#fetchCorporationLosses">fetchCorporationLosses</a></div><div class="sidebar-section-children"><a href="global.html#getAllFoldersInFolder">getAllFoldersInFolder</a></div><div class="sidebar-section-children"><a href="global.html#getAllInFolder">getAllInFolder</a></div><div class="sidebar-section-children"><a href="global.html#getDateTimeCol">getDateTimeCol</a></div><div class="sidebar-section-children"><a href="global.html#getEveMarketerData_">getEveMarketerData_</a></div><div class="sidebar-section-children"><a href="global.html#getFilesAndFoldersInFolder">getFilesAndFoldersInFolder</a></div><div class="sidebar-section-children"><a href="global.html#getFolderByName">getFolderByName</a></div><div class="sidebar-section-children"><a href="global.html#getFolderContents">getFolderContents</a></div><div class="sidebar-section-children"><a href="global.html#getIndustryPrices">getIndustryPrices</a></div><div class="sidebar-section-children"><a href="global.html#getTypeIds">getTypeIds</a></div><div class="sidebar-section-children"><a href="global.html#loadRegionAggregates">loadRegionAggregates</a></div><div class="sidebar-section-children"><a href="global.html#onEdit">onEdit</a></div><div class="sidebar-section-children"><a href="global.html#prepareSheet">prepareSheet</a></div><div class="sidebar-section-children"><a href="global.html#readDrive">readDrive</a></div><div class="sidebar-section-children"><a href="global.html#removeDuplicateRows">removeDuplicateRows</a></div><div class="sidebar-section-children"><a href="global.html#resolveIdsToNames">resolveIdsToNames</a></div><div class="sidebar-section-children"><a href="global.html#timestamp">timestamp</a></div></div></div><div class="mobile-navbar-actions"><div class="navbar-right-item"><button class="icon-button search-button" aria-label="open-search"><svg><use xlink:href="#search-icon"></use></svg></button></div><div class="navbar-right-item"><button class="icon-button theme-toggle" aria-label="toggle-theme"><svg><use class="theme-svg-use" xlink:href="#light-theme-icon"></use></svg></button></div><div class="navbar-right-item"><button class="icon-button font-size" aria-label="change-font-size"><svg><use xlink:href="#font-size-icon"></use></svg></button></div></div></div></div><script type="text/javascript" src="scripts/core.min.js"></script><script src="scripts/search.min.js" defer="defer"></script><script src="scripts/third-party/fuse.js" defer="defer"></script><script type="text/javascript">var tocbotInstance=tocbot.init({tocSelector:"#eed4d2a0bfd64539bb9df78095dec881",contentSelector:".main-content",headingSelector:"h1, h2, h3",hasInnerContainers:!0,scrollContainer:".main-content",headingsOffset:130,onClick:bringLinkToView})</script></body></html>
