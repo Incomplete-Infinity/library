@@ -12,4 +12,6 @@
 
 <!-- optional markdown-notes-tree directory description ends here -->
 
+- [`cardinalToOrdinal()`](cardinalToOrdinal.md)
 - [`cardinalToOrdinal()`](cardinalToOrdinal\(\).md)
+- [Numbers](<README (2).md>)

@@ -17,6 +17,7 @@
 - [`decodeCell()`](decodeCell\(\).md)
 - [`encodeRange()`](encodeRange\(\).md)
 - [`prepareSheet()`](prepareSheet\(\).md)
+- [Sheets](<README (2).md>)
 - [`removeDuplicateRows()`](removeDuplicateRows\(\).md)
 - [`tableFromArray()`](tableFromArray\(\).md)
 - [`Util`](Util.md)

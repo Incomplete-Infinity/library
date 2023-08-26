@@ -12,4 +12,5 @@
 
 <!-- optional markdown-notes-tree directory description ends here -->
 
+- [Strings](<README (2).md>)
 - [`toTitleCase()`](toTitleCase\(\).md)
