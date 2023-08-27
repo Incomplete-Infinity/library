@@ -11,7 +11,5 @@
  * @returns The function `daysSince` returns the number of days between the input `date` and the
  * current date.
  */
-function daysSince(date) {
-	return (date - new Date()) / (1000 * 3600 * 24);
-}
+const daysSince = date => (date - new Date()) / (1000 * 3600 * 24);
 ```
