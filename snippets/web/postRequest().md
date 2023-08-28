@@ -53,7 +53,8 @@ async function postRequest(url) {
 ### Google Apps Script
 
 ```js
-async function postRequest(url) {
+const postRequest = url => {
+  const { fetch } = UrlFetchApp;
   const method = 'POST';
   const headers = {
     'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36'
@@ -66,7 +67,7 @@ async function postRequest(url) {
     payload
   };
 
-  const response = await UrlFetchApp.fetch(url, options);
+  const response = await fetch(url, options);
   return JSON.parse(response.getContentText());
 }
 ```
