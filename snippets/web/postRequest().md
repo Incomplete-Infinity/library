@@ -9,20 +9,20 @@ The `postRequest()` function enables you to perform a POST request using JavaScr
 ### Browser
 
 ```js
-async function postRequest(url) {
+const user agent = 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36'
+
+const postRequest = (url, payload = { key: 'value' }) => {
   const method = 'POST';
   const headers = {
-    'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36'
+    'user-agent': userAgent
   };
-  const payload = { key: 'value' };
-
   const options = {
     method,
     headers,
     body: JSON.stringify(payload)
   };
-
   const response = await fetch(url, options);
+
   return response.json();
 }
 ```
