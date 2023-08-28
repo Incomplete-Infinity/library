@@ -32,20 +32,20 @@ async function postRequest(url) {
 ```js
 const fetch = require('node-fetch');
 
-async function postRequest(url) {
+const postRequest = async url => {
+  const payload = { key: 'value' };
+  const body = JSON.stringify(payload);
   const method = 'POST';
   const headers = {
     'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36'
   };
-  const payload = { key: 'value' };
-
   const options = {
+    body,
     method,
     headers,
-    body: JSON.stringify(payload)
   };
-
   const response = await fetch(url, options);
+  
   return response.json();
 }
 ```
@@ -53,8 +53,9 @@ async function postRequest(url) {
 ### Google Apps Script
 
 ```js
-const postRequest = url => {
-  const { fetch } = UrlFetchApp;
+const { fetch } = UrlFetchApp;
+
+const postRequest = async url => {
   const method = 'POST';
   const headers = {
     'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36'
