@@ -1,5 +1,3 @@
-
-                - [**js**
 - [**snippets**](snippets)
     - [**Drive**](snippets/drive)
         - [`addCustomProperty()`](snippets/drive/addCustomProperty\(\).md)
