@@ -62,13 +62,25 @@ title: Node
 flowchart LR
   start(["Start"]) --> 1
 
-  1["Fetch Page"] --> |response| 2
+  1["Fetch
+Page"] --> |response| 2
 
-  2["get x-pages"]
+  3["get
+x-pages"] --> |x-pages| 4
 
-  3{"page < x-pages?"}
-
-
+  4{"page
+<
+x-pages?"} --> |TRUE| 5
+  4 --> |FALSE| 6
+  2["Concat
+the
+data"] --> |headers| 3
+  5["Get
+Next
+Page"] --> 1
+  6["Return
+concatenated
+data"] --> nd
 
   nd(["End"])
 
